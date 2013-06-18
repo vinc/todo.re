@@ -1,0 +1,34 @@
+doctype html
+html lang="en" ng-app="todore"
+  head
+    meta charset="utf-8"
+    title TODO.re - Minimalist Task Lists
+    meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    link href="//fonts.googleapis.com/css?family=Bitter|Open+Sans" rel="stylesheet" type="text/css"
+    link href="/styles/screen.css" rel="stylesheet" type="text/css"
+    script src="/scripts/vendors/modernizr.min.js"
+    script src="/scripts/vendors/jquery.min.js"
+    script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"
+    script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular-resource.min.js"
+    script src="/scripts/app.js"
+    script src="/scripts/controllers.js"
+    script src="/scripts/services.js"
+
+
+  body.welcome
+    section.welcome-head
+      .container
+        h1
+          strong TODO
+          | .re
+        p Task management? Keep it simple and splendid.
+        form action="/login" method="post"
+          input type="email" name="email" placeholder="Your email"
+          input type="submit" value="connect"
+
+    section.welcome-demo
+      .container
+        h1 Manage your tasks efficiently.
+        p Seriously, it's super easy. Just look at the demo below.
+
+      .container ng-view="" ng-cloak="" class="ng-cloak"

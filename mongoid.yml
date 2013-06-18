@@ -1,0 +1,8 @@
+development:
+  sessions:
+    default:
+      database: todore
+      hosts:
+        - localhost:27017
+  options:
+    allow_dynamic_fields: false

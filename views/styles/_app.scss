@@ -1,0 +1,168 @@
+body > header {
+  background-color: $primary-color;
+  box-shadow: 0px 1px 1px #ccc;
+  color: $link-color;
+  height: 3em;
+  padding: 0 1em;
+  position: relative;
+  //margin-top: -2.7em;
+  @include vendor-prefix(transition, 0.5s);
+
+  &:hover {
+    //margin-top: 0;
+  }
+
+  a {
+    color: $link-color;
+  }
+
+  h1 {
+    font-weight: normal;
+    margin: 0;
+    span {
+      color: $secondary-color;
+    }
+  }
+
+  .icon {
+    color: $secondary-color;
+    padding: 0 0.75em;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      color: $link-color;
+    }
+  }
+
+  .settings {
+    right: 0;
+    top: 0;
+    position: absolute;
+  }
+
+  > * {
+    font-size: 1.5em;
+    line-height: 2em;
+    vertical-align: middle;
+  }
+}
+
+.container {
+  position: relative;
+  padding: 1em;
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+.ng-cloak {
+  display: none;
+}
+
+textarea.title {
+  font-size: 2em;
+  font-family: 'Bitter', serif;
+  font-weight: normal;
+  margin: 0 0 0.25em 0;
+  //text-transform: uppercase;
+}
+
+li {
+  margin-left: 1.5em;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label:before {
+  background: white;
+  border: solid 1px #ddd;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px $shadow-color inset, 0 1px 2px $shadow-color;
+  color: #aaa;
+  content: "";
+  display: inline-block;
+  font-family: FontAwesome;
+  height: 0.75em;
+  left: -1.5em;
+  line-height: 0.75em;
+  text-shadow: 0 1px 2px #ddd;
+  top: 0.25em;
+  position: absolute;
+  width: 0.75em;
+}
+
+input[type="checkbox"] + label:hover:before,
+input[type="checkbox"] + label:active:before {
+  background: #f7f7f7;
+  box-shadow: 1px 1px 2px #eee inset, 0 0 2px #eee;
+}
+
+input[type="checkbox"]:checked + label:before {
+  content: "\f00c";
+}
+
+input[type="checkbox"]:disabled + label:before {
+  content: "";
+}
+
+.button {
+  color: $disable-color;
+  cursor: pointer;
+  @include vendor-prefix(transition, color 0.2s ease-in);
+
+  &:hover {
+    color: $foreground-color;
+  }
+}
+
+.tasklists {
+  .done-true {
+    color: $disable-color;
+    text-decoration: line-through;
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  textarea,
+  input[type="text"] {
+    background: none;
+    border: none;
+    color: $foreground-color;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    width: 100%;
+  }
+
+  textarea {
+    resize: none;
+    overflow: hidden;
+  }
+
+  .add-list {
+    margin: 1em auto 0;
+    text-align: center;
+    width: 8em;
+  }
+
+  article {
+    border-left-style: solid;
+    border-left-width: 6px;
+    padding-left: 1em;
+    @include vendor-prefix(user-select, none);
+  }
+
+  article + article {
+    margin: 2em 0 1em;
+  }
+}
+
+form.settings + * {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+}

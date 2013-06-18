@@ -1,0 +1,91 @@
+.welcome-head {
+  background-color: brown;
+  box-shadow: 0px 1px 1px #ccc;
+  width: 100%;
+  font-size: 2em;
+  padding: 1em 0;
+
+  text-align: center;
+  
+  h1 {
+    color: indianred;
+    font-size: 3.5em;
+    font-weight: normal;
+    margin: 0;
+    strong {
+      color: ghostwhite;
+    }
+  }
+  p {
+    color: lightcoral;
+    margin: 0.1em 0;
+  }
+
+  form {
+    font-size: 0.85em;
+    margin-top: 2em;
+
+    input {
+      padding: 0.2em 0.5em;
+      border: none;
+      border-radius: 3px;
+    }
+    input + input {
+      margin-left: 0.5em;
+    }
+    input[type=email] {
+      background-color: ghostwhite;
+      color: indianred;
+      width: 12em;
+    }
+    input[type=submit] {
+      background-color: indianred;
+      color: ghostwhite;
+    }
+  }
+}
+
+.welcome-demo {
+  background-color: ghostwhite;
+  box-shadow: 0px 1px 1px #ccc;
+  width: 100%;
+  font-size: 1.5em;
+  padding: 1em 0;
+  text-align: center;
+
+  .container {
+    max-width: 40em;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #444;
+    font-size: 1.75em;
+    font-weight: normal;
+    margin: 0.25em 0;
+  }
+  p {
+    margin: 0.25em 0;
+    color: #888;
+  }
+  .tasklists {
+    font-size: 0.65em;
+    max-width: 40em;
+    margin: 2em auto;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+}
+
+@media only screen and (max-width: 720px) {
+}
+
+@media only screen and (max-width: 480px) {
+  .welcome-head {
+    font-size: 1.5em;
+  }
+  .welcome-demo .container:first-child {
+    font-size: 0.9em;
+  }
+}

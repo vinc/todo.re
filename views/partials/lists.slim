@@ -1,0 +1,14 @@
+form.tasklists
+  article class="{{list.color}}-border" ng-repeat="list in lists" switch-color=""
+    textarea class="title" placeholder="List name" rows="1" ng-model="list.name" ng-keydown="listKeydown($event)" ng-change="list.$update()"
+      | {{list.name}}
+    ul.unstyled.sortable
+      li ng-repeat="task in list.tasks"
+        input id="{{task._id}}" type="checkbox" ng-model="task.done" ng-change="list.$update()"
+        label for="{{task._id}}"
+        textarea class="task done-{{task.done}}" placeholder="New task" rows="1" ng-model="task.text" textarea-event=""
+          | {{task.text}}
+
+  div.button.add-list ng-click="addList()"
+    i.icon-plus-sign
+    |  New List

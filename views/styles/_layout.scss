@@ -1,0 +1,76 @@
+@mixin vendor-prefix($name, $args) {
+  -webkit-#{$name}: $args;
+     -moz-#{$name}: $args;
+      -ms-#{$name}: $args;
+       -o-#{$name}: $args;
+          #{$name}: $args;
+}
+
+html {
+  background: $background-color;
+  color: $foreground-color;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: $foreground-color;
+  text-decoration: none;
+  @include vendor-prefix(transition, color 0.2s ease-in);
+}
+
+label p {
+  margin: 0.25em 0;
+}
+
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  @include vendor-prefix(box-sizing, border-box)
+}
+
+input {
+  background: white;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px $shadow-color inset, 0 1px 4px $shadow-color;
+  color: #aaa;
+  outline: none;
+  padding: 0.4em;
+  transition: 500ms;
+}
+
+input:focus {
+  border-color: lighten($primary-color, 40%);
+  box-shadow: 0 1px 2px $shadow-color inset, 0 0 7px lighten($primary-color, 40%);
+}
+
+ul.unstyled {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-input-placeholder {
+  color: $disable-color;
+}
+::-moz-input-placeholder {
+  color: $disable-color;
+}
+:-moz-input-placeholder {
+  color: $disable-color;
+}
+:-ms-input-placeholder {
+  color: $disable-color;
+}
+
+$colors:
+  red $red-color,
+  orange $orange-color,
+  yellow $yellow-color,
+  grey $grey-color;
+
+@each $color in $colors {
+  .#{nth($color, 1)}-border {
+    border-color: nth($color, 2)
+  }
+}
