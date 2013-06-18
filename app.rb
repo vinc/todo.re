@@ -47,7 +47,7 @@ before do
 end
 
 get '/' do
-  if session[:uid]
+  if session.key?(:uid)
     redirect to('/lists')
   else
     redirect to('/welcome')
@@ -55,7 +55,11 @@ get '/' do
 end
 
 get '/lists' do
-  slim :index
+  if session.key?(:uid)
+    slim :index
+  else
+    redirect to('/login')
+  end
 end
 
 get '/settings' do
@@ -66,17 +70,21 @@ get '/welcome' do
   slim :welcome
 end
 
-get '/login' do # FIXME: Duplicate with '/'
-  if session[:uid]
-    redirect to('/lists')
-  else
-    redirect to('/welcome')
-  end
-end
-
 get '/logout' do
   session.clear
   redirect to('/')
+end
+
+get '/login' do # FIXME: Duplicate with '/'
+  p session
+  if session.key?(:uid)
+    puts 'user is auth'
+    redirect to('/lists')
+  else
+    slim :login, locals: {
+      emailed: false
+    }
+  end
 end
 
 post '/login' do
@@ -92,7 +100,9 @@ post '/login' do
     subject 'Log in to TODO.re'
     body "http://todo.re:31337/login/#{token.id}"
   end
-  slim :login
+  slim :login, locals: {
+    emailed: true
+  }
 end
 
 get '/login/:id' do |id|
