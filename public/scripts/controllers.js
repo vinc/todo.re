@@ -19,6 +19,7 @@ function TaskListsCtrl($scope, $log, $timeout, TaskList) {
     $scope.status = 'Saving ...';
     this.list.$update(function() {
       $log.info('Changes saved');
+      $scope.status = 'Saved';
       $timeout(function() { $scope.status = ''; }, 2000);
     });
   };

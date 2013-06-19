@@ -39,11 +39,13 @@ angular.module('todore').
       
       elem.bind('blur', function(e) {
         scope.$apply(function() {
+          var parentScope = scope.$parent.$parent;
+          parentScope.status = 'Saving ...';
           $log.info('Updating list');
-          scope.status = 'Saving ...';
           scope.list.$update(function() {
+            parentScope.status = 'Saved';
+            $timeout(function() { parentScope.status = ''; }, 2000);
             $log.info('Changes saved');
-            $timeout(function() { scope.status = ''; }, 2000);
           });
         });
       });
