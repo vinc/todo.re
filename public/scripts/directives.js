@@ -43,7 +43,7 @@ angular.module('todore').
           scope.status = 'Saving ...';
           scope.list.$update(function() {
             $log.info('Changes saved');
-            scope.status = '';
+            $timeout(function() { scope.status = ''; }, 2000);
           });
         });
       });

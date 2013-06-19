@@ -1,4 +1,4 @@
-function TaskListsCtrl($scope, $log, TaskList) {
+function TaskListsCtrl($scope, $log, $timeout, TaskList) {
   $scope.status = 'Loading ...';
 
   $scope.lists = TaskList.query(function() {
@@ -19,7 +19,7 @@ function TaskListsCtrl($scope, $log, TaskList) {
     $scope.status = 'Saving ...';
     this.list.$update(function() {
       $log.info('Changes saved');
-      $scope.status = '';
+      $timeout(function() { $scope.status = ''; }, 2000);
     });
   };
 
@@ -67,5 +67,5 @@ function SettingsCtrl($scope, $log, Settings) {
   $scope.settings = Settings.get();
 }
 
-TaskListsCtrl.$inject = ['$scope', '$log', 'TaskList'];
+TaskListsCtrl.$inject = ['$scope', '$log', '$timeout', 'TaskList'];
 SettingsCtrl.$inject = ['$scope', '$log', 'Settings'];
