@@ -18,6 +18,10 @@
     margin: 0 auto;
   }
 
+  .status {
+    display: none !important; // FIXME: controller.js
+  }
+
   h1 {
     color: #444;
     font-size: 1.75em;

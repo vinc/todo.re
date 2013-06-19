@@ -40,7 +40,11 @@ angular.module('todore').
       elem.bind('blur', function(e) {
         scope.$apply(function() {
           $log.info('Updating list');
-          scope.list.$update();
+          scope.status = 'Saving ...';
+          scope.list.$update(function() {
+            $log.info('Changes saved');
+            scope.status = '';
+          });
         });
       });
 

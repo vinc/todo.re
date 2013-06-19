@@ -1,3 +1,6 @@
+p.status
+  span ng-show="status.length"
+    | {{status}}
 form.tasklists
   article class="{{list.color}}-border" ng-repeat="list in lists" switch-color=""
     textarea class="title" placeholder="List name" rows="1" ng-model="list.name" ng-keydown="listKeydown($event)" ng-change="list.$update()"

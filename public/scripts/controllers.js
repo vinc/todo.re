@@ -1,24 +1,26 @@
 function TaskListsCtrl($scope, $log, TaskList) {
+  $scope.status = 'Loading ...';
+
   $scope.lists = TaskList.query(function() {
     setTimeout(function() {
-      //$('.sortable').sortable();
-      /*
-      $('textarea').each(function() {
-        this.rows = 1;
-        this.rows = this.scrollHeight / this.clientHeight;
-      });
-      */
-      var textareas = angular.element(document).find('textarea');
+      var textareas;
+
+      textareas = angular.element(document).find('textarea');
       angular.forEach(textareas, function(textarea) {
         this.rows = 1;
         this.rows = this.scrollHeight / this.clientHeight;
       });
+
+      $scope.status = '';
     }, 0);
   });
 
   $scope.update = function() {
-    $log.info('Changes saved');
-    this.list.$update();
+    $scope.status = 'Saving ...';
+    this.list.$update(function() {
+      $log.info('Changes saved');
+      $scope.status = '';
+    });
   };
 
   $scope.addList = function() {

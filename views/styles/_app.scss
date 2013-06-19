@@ -1,4 +1,5 @@
 body > header {
+  z-index: 1; // For drawing box-shadow over .status of .container
   background-color: $primary-color;
   box-shadow: 0px 1px 1px #ccc;
   color: $link-color;
@@ -117,7 +118,9 @@ input[type="checkbox"]:disabled + label:before {
   }
 }
 
-.tasklists {
+form.tasklists {
+  margin-top: 1em;
+
   .done-true {
     color: $disable-color;
     text-decoration: line-through;
@@ -165,4 +168,22 @@ form.settings + * {
   margin-top: 1em;
   padding-top: 1em;
   border-top: 1px solid #eee;
+}
+
+.status {
+  left: 0;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+
+  span {
+    background: lighten($yellow-color, 25%);
+    border: solid 1px $yellow-color;
+    border-top: none;
+    box-shadow: 0 1px 3px $shadow-color;
+    color: $disable-color;
+    padding: 0 2em;
+  }
 }
