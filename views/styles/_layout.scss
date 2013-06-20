@@ -77,6 +77,10 @@ $colors:
 
 .full {
   display: -webkit-box;
+  display:    -moz-box;
+  display:     -ms-box;
+  display:      -o-box;
+  display:         box;
   @include vendor-prefix(box-orient, horizontal);
   @include vendor-prefix(box-align, center);
   @include vendor-prefix(box-pack, center);
