@@ -106,8 +106,11 @@ $colors:
   form {
     font-size: 0.85em;
     margin-top: 2em;
+    text-align: center;
+    padding: 0 1em;
 
     input {
+      margin: 0.5em 0;
       padding: 0.2em 0.5em;
       border: none;
       border-radius: 3px;
@@ -118,7 +121,8 @@ $colors:
     input[type=email] {
       background-color: ghostwhite;
       color: indianred;
-      width: 12em;
+      max-width: 12em;
+      width: 100%;
     }
     input[type=submit] {
       background-color: indianred;
