@@ -1,6 +1,8 @@
 require 'json'
+require 'securerandom'
 require 'yaml'
 
+require 'dalli'
 require 'mail'
 require 'mongoid'
 require 'sass'
@@ -36,6 +38,7 @@ configure do
   enable :sessions
   set :partial_template_engine, :slim
 
+  set :cache, Dalli::Client.new
   #set :ttl, 60 * 30
   set :static_cache_control, [:public, :max_age => 60 * 60 * 24 * 30]
 
@@ -88,30 +91,40 @@ get '/login' do # FIXME: Duplicate with '/'
 end
 
 post '/login' do
-  p params
-  begin
-    token = Token.create(params)
-  rescue Mongoid::Errors::UnknownAttribute
-    halt 406
-  end
+  halt 406 unless params.has_key?('email')
+
+  email = params['email']
+  token = SecureRandom.uuid
+
+  # Create a one-time password valid 24 hours
+  key = "token:#{token}"
+  val = email
+  ttl = 60 * 60 * 24
+  settings.cache.set(key, val, ttl)
+
   Mail.deliver do
-    to token.email
-    from 'noreply@todo.re'
+    to email
+    from 'TODO.re <noreply@todo.re>'
     subject 'Log in to TODO.re'
-    body "http://todo.re:31337/login/#{token.id}"
+    body "http://todo.re:31337/login/#{token}"
   end
+
   slim :login, locals: {
     emailed: true
   }
 end
 
-get '/login/:id' do |id|
-  begin
-    token = Token.find(id)
-  rescue BSON::InvalidObjectId
-    halt 406
-  end
-  @user = User.find_or_create_by(email: token.email)
+get '/login/:token' do |token|
+  key = "token:#{token}"
+  email = settings.cache.get(key)
+
+  # Token should exists
+  halt 406 if email.nil?
+
+  # Token should be destroyed after use
+  settings.cache.delete(key)
+
+  @user = User.find_or_create_by(email: email)
   session[:uid] = @user.id
   redirect to('/')
 end

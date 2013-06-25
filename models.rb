@@ -1,10 +1,5 @@
 require 'mongoid'
 
-class Token
-  include Mongoid::Document
-  field :email, type: String
-end
-
 class User
   include Mongoid::Document
   field :email, type: String
