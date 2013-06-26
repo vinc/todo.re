@@ -145,11 +145,11 @@ get '/settings.json' do
   settings.to_json
 end
 
-get '/lists/?.json' do
+get '/lists.json' do
   @user.lists.all.to_json
 end
 
-post '/lists/?.json' do
+post '/lists.json' do
   status 201
   params['tasks'] ||= [Task.new]
   begin
