@@ -1,7 +1,9 @@
 function TaskListsCtrl($scope, $log, $timeout, TaskList) {
   $scope.status = 'Loading ...';
 
-  $scope.lists = TaskList.query(function() {
+  $scope.lists = TaskList.query();
+
+  $scope.lists.$then(function() {
     $scope.status = '';
   });
 
