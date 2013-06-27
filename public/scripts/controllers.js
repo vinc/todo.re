@@ -2,17 +2,7 @@ function TaskListsCtrl($scope, $log, $timeout, TaskList) {
   $scope.status = 'Loading ...';
 
   $scope.lists = TaskList.query(function() {
-    setTimeout(function() {
-      var textareas;
-
-      textareas = angular.element(document).find('textarea');
-      angular.forEach(textareas, function(textarea) {
-        this.rows = 1;
-        this.rows = this.scrollHeight / this.clientHeight;
-      });
-
-      $scope.status = '';
-    }, 0);
+    $scope.status = '';
   });
 
   $scope.update = function() {

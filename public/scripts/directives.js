@@ -25,17 +25,16 @@ angular.module('todore').
     };
   }).
   directive('textareaEvent', function($timeout, $log) {
-    return function(scope, elem, attrs) {
-      // Recompute textarea height
-      resize = function() {
-        $timeout(function() {
-          elem.prop('rows', 1);
-          elem.prop('rows', elem.prop('scrollHeight') /
-                            elem.prop('clientHeight'));
-        });
-      };
+    // Recompute textarea height
+    resize = function(e) {
+      $timeout(function() {
+        e.prop('rows', 1);
+        e.prop('rows', e.prop('scrollHeight') / e.prop('clientHeight'));
+      });
+    };
 
-      resize(); // Recompute at creation time
+    return function(scope, elem, attrs) {
+      resize(elem); // Recompute at creation time
       
       elem.bind('blur', function(e) {
         scope.$apply(function() {
@@ -86,7 +85,7 @@ angular.module('todore').
             });
             break;
           }
-          resize();
+          resize(elem);
         });
       });
     };
